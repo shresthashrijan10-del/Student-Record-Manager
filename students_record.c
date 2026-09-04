@@ -1,98 +1,81 @@
 #include <stdio.h>
-typedef struct{
-    int id;
-    char name[50];
-    int age;
-    float marks;
-}Student;
-
-void addStudent(Student *students){
-    printf("Enter id: ");
-    scanf("%d",&students->id);
-
-    printf("Enter name: ");
-    scanf("%49s",students->name);
-
-    printf("Enter age: ");
-    scanf("%d",&students->age);
-
-    printf("Enter marks: ");
-    scanf("%f",&students->marks);
-}
-void loadStudents(Student *students,int *count){
-    FILE *fp;
-    fp=fopen("student.data","rb");
-    if(fp==NULL){
-        return;
-    }
-    fseek(fp,0,SEEK_END);
-    long fileSize=ftell(fp);
-    *count =fileSize/sizeof(Student);
-    fseek(fp,0,SEEK_SET);
-    fread(students,sizeof(Student),*count,fp);
-    fclose(fp);
-}
+#include "student.h"
 
 int main(){
     Student students[100];
-    int count=0;
-    loadStudents(students,&count);
+    int count = 0;
+
+    loadStudents(students, &count);
+
     int choice;
+
     while(1){
         printf("\n==== Student Record Manager ====\n");
         printf("1. Add student\n");
         printf("2. Display students\n");
         printf("3. Exit\n");
         printf("4. Save students\n");
-        printf("Choose\n");
-        scanf("%d",&choice);
+        printf("Choose: ");
+        scanf("%d", &choice);
 
         switch(choice){
-            case 1:
-            if(count>=100){
-                printf("Student storage is full.\n");
-                break;
-            }
-            printf("\nEnter the details of student %d\n",count+1);
-            addStudent(&students[count]);
-            count++;
 
-            printf("Student added successfully.\n");
-            break;
-            
-            case 2:
-            if(count==0){
-                printf("No student available.\n");
+            case 1:
+                if(count >= 100){
+                    printf("Student storage is full.\n");
+                    break;
+                }
+
+                printf("\nEnter the details of student %d\n", count + 1);
+
+                addStudent(&students[count]);
+
+                count++;
+
+                printf("Student added successfully.\n");
                 break;
-            }
-            printf("\n==== Student Records ====\n");
-            for(int i=0;i<count;i++){
-                printf("\nStudent %d\n",i+1);
-                printf("ID: %d\n",students[i].id);
-                printf("Name: %s\n",students[i].name);
-                printf("Age: %d\n",students[i].age);
-                printf("Marks: %.2f\n",students[i].marks);
-            }
-            break;
+
+            case 2:
+                if(count == 0){
+                    printf("No student available.\n");
+                    break;
+                }
+
+                printf("\n==== Student Records ====\n");
+
+                for(int i = 0; i < count; i++){
+                    printf("\nStudent %d\n", i + 1);
+                    printf("ID: %d\n", students[i].id);
+                    printf("Name: %s\n", students[i].name);
+                    printf("Age: %d\n", students[i].age);
+                    printf("Marks: %.2f\n", students[i].marks);
+                }
+                break;
+
             case 3:
-            printf("Program ended.\n");
-            return 0;
+                printf("Program ended.\n");
+                return 0;
 
             case 4:{
-                 FILE *fp;
-            fp=fopen("student.data","wb");
-            if(fp==NULL){
-                printf("Could not open the file.\n");
-                return 1;
-            }
-            fwrite(students,sizeof(Student),count,fp);
-            fclose(fp);
+                FILE *fp;
 
-            printf("Students saved successfully.\n");
-            break;
+                fp = fopen("student.data", "wb");
+
+                if(fp == NULL){
+                    printf("Could not open the file.\n");
+                    return 1;
+                }
+
+                fwrite(students, sizeof(Student), count, fp);
+
+                fclose(fp);
+
+                printf("Students saved successfully.\n");
+                break;
             }
+
             default:
-            printf("Invalid choice.\n");
+                printf("Invalid choice.\n");
         }
     }
 }
