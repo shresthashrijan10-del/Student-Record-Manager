@@ -34,3 +34,17 @@ void loadStudents(Student *students, int *count){
 
     fclose(fp);
 }
+void searchStudent(Student *students,int count,int id){
+    for(int i=0;i<count;i++){
+        if(students[i].id==id){
+            printf("\nStudent found!\n");
+            printf("ID: %d\n",students[i].id);
+            printf("Name: %s\n",students[i].name);
+            printf("Age: %d\n",students[i].age);
+            printf("Marks: %.2f\n",students[i].marks);
+            return;
+        }
+
+    }
+    printf("\nStudent not found.\n");
+}

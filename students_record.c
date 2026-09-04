@@ -15,6 +15,7 @@ int main(){
         printf("2. Display students\n");
         printf("3. Exit\n");
         printf("4. Save students\n");
+        printf("5. Search student\n");
         printf("Choose: ");
         scanf("%d", &choice);
 
@@ -71,6 +72,13 @@ int main(){
                 fclose(fp);
 
                 printf("Students saved successfully.\n");
+                break;
+            }
+            case 5:{
+                int id;
+                printf("Enter the id of the student.\n");
+                scanf("%d",&id);
+                searchStudent(students,count,id);
                 break;
             }
 

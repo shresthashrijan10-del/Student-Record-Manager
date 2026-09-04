@@ -10,5 +10,6 @@ typedef struct{
 
 void addStudent(Student *students);
 void loadStudents(Student *students, int *count);
+void searchStudent(Student *students,int count,int id);
 
 #endif
