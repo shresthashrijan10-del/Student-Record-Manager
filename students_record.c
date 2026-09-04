@@ -29,6 +29,7 @@ int main(){
         printf("1. Add student\n");
         printf("2. Display students\n");
         printf("3. Exit\n");
+        printf("4. Save students\n");
         printf("Choose\n");
         scanf("%d",&choice);
 
@@ -62,6 +63,20 @@ int main(){
             case 3:
             printf("Program ended.\n");
             return 0;
+
+            case 4:{
+                 FILE *fp;
+            fp=fopen("student.data","wb");
+            if(fp==NULL){
+                printf("Could not open the file.\n");
+                return 1;
+            }
+            fwrite(students,sizeof(Student),count,fp);
+            fclose(fp);
+
+            printf("Students saved successfully.\n");
+            break;
+            }
             default:
             printf("Invalid choice.\n");
         }
