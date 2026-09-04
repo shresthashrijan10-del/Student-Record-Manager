@@ -48,3 +48,22 @@ void searchStudent(Student *students,int count,int id){
     }
     printf("\nStudent not found.\n");
 }
+void deleteStudent(Student *students,int *count,int id){
+    int foundIndex=-1;
+    for(int i=0;i<*count;i++){
+        if(students[i].id==id){
+            foundIndex=i;
+            break;
+        }
+    }
+    if(foundIndex==-1){
+        printf("Could not find the student.\n");
+        return;
+    }
+    for(int j=foundIndex;j<(*count-1);j++){
+        students[j]=students[j+1];
+       
+    }
+     (*count)--;
+    
+}
