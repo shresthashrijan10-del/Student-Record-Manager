@@ -67,3 +67,26 @@ void deleteStudent(Student *students,int *count,int id){
      (*count)--;
     
 }
+void updateStudent(Student *students,int count,int id){
+    int found=0;
+    for(int i=0;i<count;i++){
+        if(students[i].id==id){
+            printf("Enter new name: \n");
+            scanf("%49s",students[i].name);
+
+            printf("Enter new age: \n");
+            scanf("%d",&students[i].age);
+
+            printf("Enter new marks: \n");
+            scanf("%f",&students[i].marks);
+
+            printf("Updated successfully.\n");
+
+            found=1;
+            break;
+        }
+    }
+    if (found==0){
+        printf("Student not found.\n");
+    }
+}

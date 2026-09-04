@@ -12,4 +12,5 @@ void addStudent(Student *students);
 void loadStudents(Student *students, int *count);
 void searchStudent(Student *students,int count,int id);
 void deleteStudent(Student *students,int *count,int id);
+void updateStudent(Student *students,int count,int id);
 #endif
