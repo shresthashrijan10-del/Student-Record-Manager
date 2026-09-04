@@ -19,10 +19,24 @@ void addStudent(Student *students){
     printf("Enter marks: ");
     scanf("%f",&students->marks);
 }
+void loadStudents(Student *students,int *count){
+    FILE *fp;
+    fp=fopen("student.data","rb");
+    if(fp==NULL){
+        return;
+    }
+    fseek(fp,0,SEEK_END);
+    long fileSize=ftell(fp);
+    *count =fileSize/sizeof(Student);
+    fseek(fp,0,SEEK_SET);
+    fread(students,sizeof(Student),*count,fp);
+    fclose(fp);
+}
 
 int main(){
     Student students[100];
     int count=0;
+    loadStudents(students,&count);
     int choice;
     while(1){
         printf("\n==== Student Record Manager ====\n");
