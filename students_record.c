@@ -21,6 +21,7 @@ int main(){
         printf("6. Delete Student\n");
         printf("7. Update Student\n");
         printf("8. Sort students by marks.\n");
+        printf("9. Find Top student\n");
 
         printf("Choose: ");
         scanf("%d", &choice);
@@ -141,6 +142,11 @@ int main(){
 
                 sortStudents(students,count);
                 printf("Students sorted by marks successfully.\n");
+                break;
+            }
+
+            case 9:{
+                findTopStudent(students,count);
                 break;
             }
 

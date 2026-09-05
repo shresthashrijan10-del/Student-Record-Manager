@@ -167,3 +167,18 @@ void sortStudents(Student *students,int count){
         }
     }
 }
+void findTopStudent(Student *students,int count){
+     int top=0;
+    for (int i=1;i<count;i++){
+       
+        if(students[i].marks>students[top].marks){
+             top=i;
+        }
+         
+    }
+    printf("Top Student\n");
+    printf("Name: %s\n",students[top].name);
+    printf("Id: %d\n",students[top].id);
+    printf("Age: %d\n",students[top].age);
+    printf("%.2f\n",students[top].marks);
+}
