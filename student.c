@@ -7,11 +7,21 @@ void addStudent(Student *students){
     printf("Enter name: ");
     scanf("%49s",students->name);
 
-    printf("Enter age: ");
-    scanf("%d",&students->age);
+    do{
+        printf("Enter age: ");
+        scanf("%d",&students->age);
+        if(students->age<=0){
+            printf("Invalid age. Enter the correct age.\n");
+        }
+    }while(students->age<=0);
 
-    printf("Enter marks: ");
-    scanf("%f",&students->marks);
+    do{
+        printf("Enter Marks: ");
+        scanf("%f",&students->marks);
+        if(students->marks <0 || students->marks>100){
+            printf("Invalid marks. Enter a value between 0 and 100.\n");
+        }
+    }while(students->marks <0 || students->marks>100);
 }
 void loadStudents(Student *students, int *count){
     FILE *fp;
