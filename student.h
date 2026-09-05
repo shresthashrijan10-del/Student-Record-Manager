@@ -22,4 +22,6 @@ void updateStudent(Student *students, int count, int id);
 
 int studentExists(Student *students, int count, int id);
 
+void sortStudents(Student *students, int count);
+
 #endif

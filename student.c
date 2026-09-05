@@ -155,3 +155,15 @@ void updateStudent(Student *students, int count, int id){
         printf("Student not found.\n");
     }
 }
+void sortStudents(Student *students,int count){
+    for(int i=0;i<count-1;i++){
+        for(int j=0;j<count-1-i;j++){
+            if(students[j].marks>students[j+1].marks){
+                Student temp;
+                temp=students[j];
+                students[j]=students[j+1];
+                students[j+1]=temp;
+            }
+        }
+    }
+}

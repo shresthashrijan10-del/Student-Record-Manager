@@ -20,6 +20,7 @@ int main(){
         printf("5. Search student\n");
         printf("6. Delete Student\n");
         printf("7. Update Student\n");
+        printf("8. Sort students by marks.\n");
 
         printf("Choose: ");
         scanf("%d", &choice);
@@ -133,6 +134,13 @@ int main(){
 
                 updateStudent(students, count, id);
 
+                break;
+            }
+
+            case 8:{
+
+                sortStudents(students,count);
+                printf("Students sorted by marks successfully.\n");
                 break;
             }
 
